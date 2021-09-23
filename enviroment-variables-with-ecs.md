@@ -128,13 +128,12 @@ Use Secrets manager to specify your username & password for your DockerHub accou
 * For Select secret type, choose Other type of secrets.
 * Select Plaintext and enter your private registry credentials using the following format:
 
-
+```
 {
   "username" : "<<your-username>>",
   "password" : "<<passwd-or-access-key>>"
 }
-
-
+```
 * Choose Next
 * For Secret name, type an optional path and name, such as production/MyAwesomeAppSecret or development/TestSecret, and choose Next
 * Review and Save
@@ -157,13 +156,13 @@ This functionality is limited to EC2 based tasks/services only !!
 
 ### create env file and upload to S3
 
-
+```
 ACCOUNTID=$(aws sts get-caller-identity | awk '{print $1}')
 aws s3 mb s3://ecs-course-$ACCOUNTID
 echo "variable1-from-s3=value1" > environment-demo.env
 echo "variable2-from-s3=value2" >> environment-demo.env
 aws s3 cp ./environment-demo.env s3://ecs-course-$ACCOUNTID/
-
+```
 
 ### add env file to task definition
 
