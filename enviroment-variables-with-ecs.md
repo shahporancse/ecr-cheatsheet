@@ -15,7 +15,7 @@ To be able to get properties from either SSM or Secrets mgr, the taskexecution I
 * click Add inline policy
 * open JSON tab, and paste the following:  
 
-
+```
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -52,7 +52,7 @@ To be able to get properties from either SSM or Secrets mgr, the taskexecution I
     }
   ]
 }
-
+```
 
 * provide a name for this policy : "ecs-course-parameter-source"
 
@@ -95,8 +95,9 @@ Open AWS mgm console and navigate to AWS Systems Manager
 check parameter:
 
 bash
+```
 aws ssm get-parameter --name plain-variable-from-ssm
-
+```
 
 Now update the container definition within our task definition, to provide both parameters to the container.
 Open section Environment variables and provide name as "plain-from-ssm" & drop-down-box value ValueFrom and in the value textbox, enter the ARN of the corresponding parameter (the ARN you grab with aws ssm get-parameter as shown above)
@@ -104,11 +105,12 @@ Open section Environment variables and provide name as "plain-from-ssm" & drop-d
 After updating the task definition, redeploy the plain-Ubuntu service , followed by ssh to the EC2 box and check the env inside the Ubuntu docker container.
 
 ##Testing:
+```
 - chmod 400 key.pem
 - ssh -i key.pem ec2-user@ec2-34-255-137-124.eu-west-1.compute.amazonaws.com
 - docker container ls | grep ubuntu
 - docker exec -it cont ainer_id "env"
-
+```
  
 
 
